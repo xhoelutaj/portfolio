@@ -45,11 +45,11 @@ export const projects = [
     video: 'https://youtu.be/usqNym1Psjs',
   },
   {
-    title: 'Kodi Rrugor AI',
+    title: 'RAG Chatbot',
     description:
       'A bilingual (Albanian / English) assistant for Albanian traffic law that runs fully locally. Custom retrieval returns whole legal articles instead of fragments, and every article the model cites is checked against its sources so fabricated citations get flagged.',
     tech: ['Python', 'LangChain', 'Ollama', 'ChromaDB', 'FastAPI'],
-    video: null,
+    video: 'https://youtu.be/WogTYXc_YiI',
   },
   {
     title: 'ContactsBook',
