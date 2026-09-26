@@ -1,42 +1,260 @@
-/* Design tokens: change these to restyle the whole site. */
+/* ---------- Design tokens: change these to restyle the whole site ---------- */
 :root {
-  --bg: #0f1115;
-  --surface: #181b22;
-  --text: #e8e9ed;
-  --muted: #9aa0ad;
-  --accent: #6ea8fe;
-  --radius: 10px;
-  --max-width: 1000px;
+  --bg: #0f172a;
+  --text: #94a3b8;          /* body text */
+  --heading: #e2e8f0;       /* names, titles, hovered links */
+  --muted: #64748b;         /* dates, footer */
+  --accent: #5eead4;
+  --accent-soft: rgba(45, 212, 191, 0.1);
+  --card-hover: rgba(30, 41, 59, 0.5);
+  --spotlight: rgba(29, 78, 216, 0.15);
+  --radius: 6px;
 
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: var(--text);
   background: var(--bg);
+  -webkit-font-smoothing: antialiased;
 }
 
+/* ---------- Base ---------- */
 * { box-sizing: border-box; }
-body { margin: 0; }
-a { color: var(--accent); }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--bg); }
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+::selection { background: var(--accent); color: var(--bg); }
 
-.navbar {
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}
+
+.link { color: var(--heading); font-weight: 500; }
+.link:hover { color: var(--accent); }
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -100px;
+  z-index: 100;
+  padding: 12px 16px;
+  border-radius: var(--radius);
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+}
+.skip-link:focus { top: 16px; }
+
+/* ---------- Mouse spotlight ---------- */
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(600px at var(--x, -1000px) var(--y, -1000px), var(--spotlight), transparent 80%);
+}
+
+/* ---------- Two-column layout ---------- */
+.layout {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.sidebar .name { margin: 0; font-size: clamp(2.25rem, 6vw, 3rem); line-height: 1.1; font-weight: 700; letter-spacing: -0.025em; color: var(--heading); }
+.sidebar .role { margin: 12px 0 0; font-size: 1.125rem; font-weight: 500; color: var(--heading); }
+.sidebar .tagline { max-width: 20rem; margin: 16px 0 0; }
+
+.section-nav { display: none; }
+.section-nav ul { list-style: none; margin: 0; padding: 0; width: max-content; }
+.section-nav a {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.nav-line {
+  width: 32px;
+  height: 1px;
+  margin-right: 16px;
+  background: var(--muted);
+  transition: width 0.15s, background 0.15s;
+}
+.section-nav a:hover,
+.section-nav a.active { color: var(--heading); }
+.section-nav a:hover .nav-line,
+.section-nav a.active .nav-line { width: 64px; background: var(--heading); }
+
+.socials { display: flex; gap: 20px; list-style: none; margin: 32px 0 0; padding: 0; }
+.socials a { display: block; transition: color 0.15s; }
+.socials a:hover { color: var(--heading); }
+
+.content { padding-top: 64px; }
+
+/* ---------- Sections ---------- */
+.section { margin-bottom: 64px; scroll-margin-top: 64px; }
+.section > p { margin: 0 0 16px; }
+
+.section-title {
   position: sticky;
   top: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px max(16px, calc((100% - var(--max-width)) / 2));
-  background: var(--surface);
-  border-bottom: 1px solid #2a2e38;
+  z-index: 20;
+  margin: 0 -24px 16px;
+  padding: 20px 24px;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(8px);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--heading);
 }
-.navbar a { color: var(--muted); text-decoration: none; }
-.navbar a:hover, .navbar a.active { color: var(--text); }
-.navbar .brand { color: var(--text); font-weight: 700; font-size: 1.1rem; }
-.navbar nav { display: flex; gap: 20px; }
 
-.page {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 40px 16px;
+.about p { margin: 0 0 16px; }
+
+/* ---------- Cards (experience + projects) ---------- */
+.card-list { display: grid; gap: 48px; list-style: none; margin: 0; padding: 0; }
+
+.card {
+  position: relative;
+  isolation: isolate; /* keeps the ::before hover background behind the text */
+  display: grid;
+  gap: 8px;
+  transition: opacity 0.3s;
+}
+
+.card-meta {
+  margin: 0;
+  padding-top: 2px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.card-title { margin: 0; font-size: 1rem; font-weight: 500; line-height: 1.4; color: var(--heading); }
+.card-sub { color: inherit; }
+.card-link { transition: color 0.15s; }
+.card-link svg { display: inline-block; margin-left: 2px; vertical-align: -1px; transition: transform 0.15s; }
+.card-link::after { content: ''; position: absolute; inset: 0; } /* whole card is the click target */
+.card:hover .card-link,
+.card-link:focus-visible { color: var(--accent); }
+.card:hover .card-link svg { transform: translate(2px, -2px); }
+.card-text { margin: 8px 0 0; font-size: 0.875rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 12px 0 0; padding: 0; }
+.tag {
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+/* Project video and links sit above the card's click overlay. */
+.project-video,
+.project-links { position: relative; z-index: 1; }
+.project-video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 2px solid rgba(226, 232, 240, 0.1);
+  border-radius: var(--radius);
+  background: #020617;
+  object-fit: contain;
+}
+.project-links { display: flex; gap: 16px; margin-top: 12px; font-size: 0.875rem; }
+.project-links a { display: inline-flex; align-items: center; gap: 6px; color: var(--heading); transition: color 0.15s; }
+.project-links a:hover { color: var(--accent); }
+
+.arrow-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 48px; font-weight: 600; color: var(--heading); }
+.arrow-link svg { transition: transform 0.15s; }
+.arrow-link:hover { color: var(--accent); }
+.arrow-link:hover svg { transform: translate(2px, -2px); }
+
+.button {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 24px;
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+  color: var(--accent);
+  font-weight: 500;
+  transition: background 0.15s;
+}
+.button:hover { background: var(--accent-soft); }
+
+.footer { max-width: 28rem; padding-bottom: 32px; font-size: 0.875rem; color: var(--muted); }
+
+/* ---------- Tablet ---------- */
+@media (min-width: 640px) {
+  .card:not(.project) { grid-template-columns: 1fr 3fr; column-gap: 32px; }
+  .sidebar .role { font-size: 1.25rem; }
+}
+
+@media (min-width: 768px) {
+  .layout { padding: 80px 48px; }
+  .section { margin-bottom: 96px; }
+  .section-title { margin: 0 -48px 16px; padding: 20px 48px; }
+}
+
+/* ---------- Desktop: sticky sidebar + scrolling content ---------- */
+@media (min-width: 1024px) {
+  .layout { display: flex; justify-content: space-between; gap: 16px; padding: 0 96px; }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 48%;
+    max-height: 100vh;
+    padding: 96px 0;
+  }
+  .section-nav { display: block; margin-top: 64px; }
+
+  .content { width: 52%; padding: 96px 0 0; }
+  .section { margin-bottom: 144px; scroll-margin-top: 96px; }
+
+  /* The sidebar nav shows where you are, so hide titles visually but keep them for screen readers. */
+  .section-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .card-link::after { inset: -16px -24px; }
+}
+
+/* Hover effects only for real mice on wide screens. */
+@media (min-width: 1024px) and (hover: hover) {
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: -16px -24px;
+    z-index: -1;
+    border-radius: var(--radius);
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+  .card:hover::before {
+    background: var(--card-hover);
+    box-shadow: inset 0 1px 0 0 rgba(148, 163, 184, 0.1);
+  }
+  /* Dim the other cards while one is hovered. */
+  .card-list:hover .card:not(:hover) { opacity: 0.5; }
 }
