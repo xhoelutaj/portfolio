@@ -17,10 +17,19 @@ Every change to `main` is rebuilt and published automatically by
 
 ### Add a demo video
 
-1. Open the [`public/videos`](public/videos) folder, then **Add file → Upload files**, and upload
-   your `.mp4` (keep it under ~20 MB; GitHub's web upload limit is 25 MB).
-   Use a simple file name like `gaffr-demo.mp4`, without spaces.
-2. Edit `src/data.js` and change that project's `video: null` to `video: 'videos/gaffr-demo.mp4'`.
+Clicking a project opens its demo in a popup player on the site. Projects with a
+live site too (like Gaffr) show two buttons instead: **Watch demo** and **Live site**.
+
+Either way, set the project's `video` in `src/data.js` to one of:
+
+- **An unlisted YouTube video** (keeps video files out of this repo):
+  upload to YouTube with visibility **Unlisted**, copy the link, and use
+  `video: 'https://youtu.be/…'`.
+- **A file in this repo:** open [`public/videos`](public/videos), then
+  **Add file → Upload files** (under ~20 MB; GitHub's web upload limit is 25 MB),
+  and use `video: 'videos/gaffr-demo.mp4'`.
+
+Optional: add a thumbnail image with `poster: 'videos/gaffr-demo.jpg'`.
 
 ### Add your resume
 

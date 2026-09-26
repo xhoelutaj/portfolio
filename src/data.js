@@ -30,8 +30,11 @@ export const about = [
 // },
 export const experience = []
 
-// Demo videos: upload the .mp4 to public/videos/ and set video: 'videos/name.mp4'.
-// An optional poster image (shown before the video plays) works the same way.
+// Clicking a project with a video opens it in a popup player on the site.
+//   video: 'videos/name.mp4'                     a file uploaded to public/videos/
+//   video: 'https://youtu.be/abc123XYZ00'         an (unlisted) YouTube video
+// poster: 'videos/name.jpg' adds an optional thumbnail image to the card.
+// demo: a link to the live app, shown as "Live site".
 export const projects = [
   {
     title: 'Gaffr: AI Soccer Coach',
@@ -46,7 +49,6 @@ export const projects = [
     description:
       'A bilingual (Albanian / English) assistant for Albanian traffic law that runs fully locally. Custom retrieval returns whole legal articles instead of fragments, and every article the model cites is checked against its sources so fabricated citations get flagged.',
     tech: ['Python', 'LangChain', 'Ollama', 'ChromaDB', 'FastAPI'],
-    repo: 'https://github.com/xhoelutaj/Rag_Chatbot',
     video: null,
   },
   {
@@ -54,7 +56,6 @@ export const projects = [
     description:
       'A role-based contact manager with five permission levels, search, and CSV / Excel export. The contact list is presented as a 3D address book with page-flip animation, layered on top of a plain server-rendered list.',
     tech: ['ASP.NET Core MVC', 'EF Core', 'SQL Server', 'JavaScript'],
-    repo: 'https://github.com/xhoelutaj/ContactsBookClaude',
     video: null,
   },
 ]
