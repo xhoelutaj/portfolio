@@ -4,8 +4,8 @@ export default function Sidebar({ profile, sections, active }) {
   const socials = [
     { href: profile.github, label: 'GitHub', Icon: GitHubIcon },
     { href: profile.linkedin, label: 'LinkedIn', Icon: LinkedInIcon },
-    { href: `mailto:${profile.email}`, label: 'Email', Icon: MailIcon },
-  ]
+    { href: profile.email && `mailto:${profile.email}`, label: 'Email', Icon: MailIcon },
+  ].filter((social) => social.href)
 
   return (
     <header className="sidebar">

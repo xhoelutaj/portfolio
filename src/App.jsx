@@ -8,16 +8,23 @@ import useActiveSection from './hooks/useActiveSection.js'
 import { profile, about, experience, projects } from './data.js'
 import { asset } from './asset.js'
 
+// Sections with no content yet are left out (and so is their nav link).
 const sections = [
   { id: 'about', label: 'About' },
-  { id: 'experience', label: 'Experience' },
+  experience.length > 0 && { id: 'experience', label: 'Experience' },
   { id: 'projects', label: 'Projects' },
   { id: 'contact', label: 'Contact' },
-]
+].filter(Boolean)
 const sectionIds = sections.map((s) => s.id)
 
 export default function App() {
   const active = useActiveSection(sectionIds)
+
+  const resumeLink = profile.resume && (
+    <a className="arrow-link" href={asset(profile.resume)} target="_blank" rel="noreferrer">
+      View full résumé <ArrowIcon />
+    </a>
+  )
 
   return (
     <>
@@ -36,16 +43,16 @@ export default function App() {
             </div>
           </Section>
 
-          <Section id="experience" title="Experience">
-            <ol className="card-list">
-              {experience.map((job) => (
-                <ExperienceItem key={`${job.company}-${job.dates}`} {...job} />
-              ))}
-            </ol>
-            <a className="arrow-link" href={asset(profile.resume)} target="_blank" rel="noreferrer">
-              View full résumé <ArrowIcon />
-            </a>
-          </Section>
+          {experience.length > 0 && (
+            <Section id="experience" title="Experience">
+              <ol className="card-list">
+                {experience.map((job) => (
+                  <ExperienceItem key={`${job.company}-${job.dates}`} {...job} />
+                ))}
+              </ol>
+              {resumeLink}
+            </Section>
+          )}
 
           <Section id="projects" title="Projects">
             <ul className="card-list">
@@ -53,14 +60,21 @@ export default function App() {
                 <ProjectCard key={project.title} {...project} />
               ))}
             </ul>
+            {experience.length === 0 && resumeLink}
           </Section>
 
           <Section id="contact" title="Contact">
             <p>
               I’m open to new opportunities and collaborations. Whether you have a question
-              or just want to say hi, my inbox is open.
+              or just want to say hi, I’d love to hear from you.
             </p>
-            <a className="button" href={`mailto:${profile.email}`}>Say hello</a>
+            {profile.email ? (
+              <a className="button" href={`mailto:${profile.email}`}>Say hello</a>
+            ) : (
+              <a className="button" href={profile.github} target="_blank" rel="noreferrer">
+                Find me on GitHub
+              </a>
+            )}
           </Section>
 
           <footer className="footer">
