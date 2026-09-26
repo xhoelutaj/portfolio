@@ -3,6 +3,9 @@ import { ArrowIcon, GitHubIcon } from './Icons.jsx'
 import TagList from './TagList.jsx'
 
 export default function ProjectCard({ title, description, tech, repo, demo, video, poster }) {
+  // The title links to the code, or to the live site when the code is private.
+  const titleHref = repo || demo
+
   return (
     <li className="card project">
       {video && (
@@ -21,8 +24,8 @@ export default function ProjectCard({ title, description, tech, repo, demo, vide
 
       <div>
         <h3 className="card-title">
-          {repo ? (
-            <a href={repo} target="_blank" rel="noreferrer" className="card-link">
+          {titleHref ? (
+            <a href={titleHref} target="_blank" rel="noreferrer" className="card-link">
               {title} <ArrowIcon />
             </a>
           ) : (

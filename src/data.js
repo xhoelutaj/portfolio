@@ -6,9 +6,9 @@ export const profile = {
   name: 'Xhoel Lutaj',
   role: 'Full-Stack Software Developer',
   tagline: 'I build full-stack web apps and practical AI tools with C#, React and Python.',
-  email: '', // e.g. 'you@example.com'. Adds the email icon and a "Say hello" button
+  email: 'xlutaj@nmu.edu',
   github: 'https://github.com/xhoelutaj',
-  linkedin: '', // e.g. 'https://www.linkedin.com/in/your-handle'
+  linkedin: 'https://www.linkedin.com/in/xhoel-lutaj-10a710348/',
   resume: '', // upload public/resume.pdf, then set this to 'resume.pdf'
 }
 
@@ -38,6 +38,7 @@ export const projects = [
     description:
       'A 1-on-1 soccer coaching web app. Players answer a few questions and get a complete training session built from a library of 200+ drills, with animated drill diagrams, coaching points and demo videos, or follow a multi-week guided pathway.',
     tech: ['Next.js', 'TypeScript', 'ASP.NET Core', 'Supabase', 'Claude API'],
+    demo: 'https://gaffrapp.com',
     video: null,
   },
   {
