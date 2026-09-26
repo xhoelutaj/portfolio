@@ -3,9 +3,11 @@ import { asset } from '../asset.js'
 import { ArrowIcon, PlayIcon } from './Icons.jsx'
 import TagList from './TagList.jsx'
 import VideoModal from './VideoModal.jsx'
+import NoticeModal from './NoticeModal.jsx'
 
-export default function ProjectCard({ title, description, tech, demo, video, poster }) {
+export default function ProjectCard({ title, description, tech, demo, demoNotice, video, poster }) {
   const [playing, setPlaying] = useState(false)
+  const [showNotice, setShowNotice] = useState(false)
   const openVideo = () => setPlaying(true)
 
   // With only a video, clicking anywhere on the card plays it.
@@ -46,7 +48,19 @@ export default function ProjectCard({ title, description, tech, demo, video, pos
                 <PlayIcon size={16} /> Watch demo
               </button>
             )}
-            <a className="action-button" href={demo} target="_blank" rel="noreferrer">
+            <a
+              className="action-button"
+              href={demo}
+              target="_blank"
+              rel="noreferrer"
+              onClick={(e) => {
+                // Show the notice first; its OK button opens the site.
+                if (demoNotice) {
+                  e.preventDefault()
+                  setShowNotice(true)
+                }
+              }}
+            >
               <ArrowIcon /> Live site
             </a>
           </div>
@@ -56,6 +70,13 @@ export default function ProjectCard({ title, description, tech, demo, video, pos
       </div>
 
       {playing && <VideoModal title={title} video={video} onClose={() => setPlaying(false)} />}
+      {showNotice && (
+        <NoticeModal
+          {...demoNotice}
+          onConfirm={() => window.open(demo, '_blank', 'noopener')}
+          onClose={() => setShowNotice(false)}
+        />
+      )}
     </li>
   )
 }

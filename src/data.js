@@ -35,6 +35,7 @@ export const experience = []
 //   video: 'https://youtu.be/abc123XYZ00'         an (unlisted) YouTube video
 // poster: 'videos/name.jpg' adds an optional thumbnail image to the card.
 // demo: a link to the live app, shown as "Live site".
+// demoNotice: optional { title, message } shown (with an OK button) before opening it.
 export const projects = [
   {
     title: 'Gaffr: AI Soccer Coach',
@@ -42,6 +43,11 @@ export const projects = [
       'A 1-on-1 soccer coaching web app. Players answer a few questions and get a complete training session built from a library of 200+ drills, with animated drill diagrams, coaching points and demo videos, or follow a multi-week guided pathway.',
     tech: ['Next.js', 'TypeScript', 'ASP.NET Core', 'Supabase', 'Claude API'],
     demo: 'https://gaffrapp.com',
+    demoNotice: {
+      title: 'Gaffr is still in development',
+      message:
+        'Thanks for stopping by! Gaffr is an active work in progress, so some features, such as signing up and logging in, may be unavailable or behave unexpectedly while I keep building. For the full experience, check out the demo video.',
+    },
     video: 'https://youtu.be/usqNym1Psjs',
   },
   {
