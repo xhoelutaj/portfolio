@@ -42,7 +42,7 @@ export const projects = [
       'A 1-on-1 soccer coaching web app. Players answer a few questions and get a complete training session built from a library of 200+ drills, with animated drill diagrams, coaching points and demo videos, or follow a multi-week guided pathway.',
     tech: ['Next.js', 'TypeScript', 'ASP.NET Core', 'Supabase', 'Claude API'],
     demo: 'https://gaffrapp.com',
-    video: null,
+    video: 'https://youtu.be/usqNym1Psjs',
   },
   {
     title: 'Kodi Rrugor AI',
