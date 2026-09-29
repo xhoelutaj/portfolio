@@ -23,7 +23,7 @@ export default function ExperienceItem({ dates, title, company, url, description
           )}
         </h3>
         <p className="card-text">{description}</p>
-        <TagList tags={tech} />
+        {tech && <TagList tags={tech} />}
       </div>
     </li>
   )

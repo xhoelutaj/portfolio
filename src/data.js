@@ -9,7 +9,7 @@ export const profile = {
   email: 'xlutaj@nmu.edu',
   github: 'https://github.com/xhoelutaj',
   linkedin: 'https://www.linkedin.com/in/xhoel-lutaj-10a710348/',
-  resume: '', // upload public/resume.pdf, then set this to 'resume.pdf'
+  resume: 'resume.pdf', // public/resume.pdf
 }
 
 export const about = [
@@ -28,7 +28,23 @@ export const about = [
 //   description: 'What you built and the impact it had.',
 //   tech: ['React', 'C#', 'SQL'],
 // },
-export const experience = []
+export const experience = [
+  {
+    dates: 'May — Jul 2026',
+    title: 'Software Engineering Intern',
+    company: 'EasyPay',
+    description:
+      'At a FinTech and digital wallet company licensed by the Central Bank of Albania, I designed and built a SQL-backed contact management app in C# and .NET with full CRUD, CSV and Excel export tools, and a Python RAG assistant that answers questions from custom knowledge sources. I also debugged and tested features in an existing codebase and reviewed code with mentors through Git.',
+    tech: ['C#', '.NET', 'SQL', 'Python'],
+  },
+  {
+    dates: '2024 — Present',
+    title: 'Student-Athlete',
+    company: 'Northern Michigan University',
+    description:
+      'NCAA Division II Men’s Soccer. I balance a full course load across a double major in Computer Science and Mathematics with year-round training, while holding a 3.98 GPA.',
+  },
+]
 
 // Clicking a project with a video opens it in a popup player on the site.
 //   video: 'videos/name.mp4'                     a file uploaded to public/videos/
@@ -41,7 +57,7 @@ export const projects = [
   {
     title: 'Gaffr: AI Soccer Coach',
     description:
-      'A 1-on-1 soccer coaching web app. Players answer a few questions and get a complete training session built from a library of 200+ drills, with animated drill diagrams, coaching points and demo videos, or follow a multi-week guided pathway.',
+      'A 1-on-1 soccer coaching web app. Players answer a few questions and get a complete training session built from a library of 144 drills, with animated drill diagrams, coaching points and demo videos, or follow a multi-week guided pathway.',
     tech: ['Next.js', 'TypeScript', 'ASP.NET Core', 'Supabase', 'Claude API'],
     demo: 'https://gaffrapp.com',
     demoNotice: {
