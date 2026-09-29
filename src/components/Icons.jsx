@@ -81,3 +81,12 @@ export function InstagramIcon(props) {
     </Icon>
   )
 }
+
+// Solid triangle for "Watch the demo" buttons.
+export function PlayFilledIcon({ size = 14 }) {
+  return (
+    <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
+      <polygon points="6 4 20 12 6 20 6 4" />
+    </svg>
+  )
+}

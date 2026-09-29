@@ -1,88 +1,93 @@
 import { useState } from 'react'
 import { asset } from '../asset.js'
-import { ArrowIcon, PlayIcon } from './Icons.jsx'
-import TagList from './TagList.jsx'
-import VideoModal from './VideoModal.jsx'
+import { PlayFilledIcon } from './Icons.jsx'
 import NoticeModal from './NoticeModal.jsx'
+import TechList from './TechList.jsx'
+import VideoModal from './VideoModal.jsx'
 
-export default function ProjectCard({ title, description, tech, demo, demoNotice, video, moreVideos = [], poster }) {
+export default function ProjectCard({
+  number,
+  title,
+  tagline,
+  description,
+  tech,
+  demo,
+  demoNotice,
+  video,
+  moreVideos = [],
+  poster,
+  quote,
+}) {
   const [playing, setPlaying] = useState(false)
   const [showNotice, setShowNotice] = useState(false)
-  const openVideo = () => setPlaying(true)
-
-  // With only a video, clicking anywhere on the card plays it.
-  // With a video and a live site, the card shows two buttons instead.
-  const wholeCardPlays = video && !demo
+  const videoCount = video ? 1 + moreVideos.length : 0
 
   return (
-    <li className="card project">
-      {poster && (
-        <img className="project-poster" src={asset(poster)} alt="" loading="lazy" />
-      )}
+    <>
+      <article className="project">
+        {poster && <img className="project-poster" src={asset(poster)} alt="" loading="lazy" />}
+        <p className="project-num">No. {number}</p>
+        <h3 className="project-title">{title}</h3>
+        {tagline && <p className="project-tagline">{tagline}</p>}
+        <p className="project-text">{description}</p>
+        <TechList items={tech} />
 
-      <div>
-        <h3 className="card-title">
-          {wholeCardPlays ? (
-            // The button's ::after stretches over the whole card.
-            <button type="button" className="card-link" onClick={openVideo}>
-              {title}
-            </button>
-          ) : (
-            title
-          )}
-        </h3>
-        <p className="card-text">{description}</p>
-
-        {wholeCardPlays && (
-          <div className="project-links">
-            <span className="watch-hint">
-              <PlayIcon size={16} /> Watch demo
-            </span>
-          </div>
-        )}
-
-        {demo && (
+        {(video || demo) && (
           <div className="project-actions">
             {video && (
-              <button type="button" className="action-button" onClick={openVideo}>
-                <PlayIcon size={16} /> Watch demo
+              <button type="button" className="btn btn-primary" onClick={() => setPlaying(true)}>
+                <PlayFilledIcon />
+                {videoCount > 1 ? `Watch the demos (${videoCount})` : 'Watch the demo'}
               </button>
             )}
-            <a
-              className="action-button"
-              href={demo}
-              target="_blank"
-              rel="noreferrer"
-              onClick={(e) => {
-                // Show the notice first; its OK button opens the site.
-                if (demoNotice) {
-                  e.preventDefault()
-                  setShowNotice(true)
-                }
-              }}
-            >
-              <ArrowIcon /> Live site
-            </a>
+            {demo && (
+              <a
+                className="btn btn-secondary"
+                href={demo}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => {
+                  // Show the notice first; its OK button opens the site.
+                  if (demoNotice) {
+                    e.preventDefault()
+                    setShowNotice(true)
+                  }
+                }}
+              >
+                Visit the live site ↗
+              </a>
+            )}
           </div>
         )}
 
-        <TagList tags={tech} />
-      </div>
+        {playing && (
+          <VideoModal
+            number={number}
+            title={title}
+            caption={tagline}
+            videos={[{ label: 'Full demo', video }, ...moreVideos]}
+            onClose={() => setPlaying(false)}
+          />
+        )}
+        {showNotice && (
+          <NoticeModal
+            {...demoNotice}
+            onConfirm={() => window.open(demo, '_blank', 'noopener')}
+            onClose={() => setShowNotice(false)}
+          />
+        )}
+      </article>
 
-      {playing && (
-        <VideoModal
-          title={title}
-          videos={[{ label: 'Full demo', video }, ...moreVideos]}
-          onClose={() => setPlaying(false)}
-        />
+      {quote && (
+        <figure className="pull-quote">
+          <blockquote>
+            <span className="quote-mark">“</span>
+            {quote.text}
+            <span className="quote-mark">”</span>
+          </blockquote>
+          {quote.caption && <figcaption>{quote.caption}</figcaption>}
+        </figure>
       )}
-      {showNotice && (
-        <NoticeModal
-          {...demoNotice}
-          onConfirm={() => window.open(demo, '_blank', 'noopener')}
-          onClose={() => setShowNotice(false)}
-        />
-      )}
-    </li>
+    </>
   )
 }

@@ -1,29 +1,21 @@
-import { ArrowIcon } from './Icons.jsx'
-import TagList from './TagList.jsx'
+import TechList from './TechList.jsx'
 
-export default function ExperienceItem({ dates, title, company, url, description, tech }) {
-  const heading = (
-    <>
-      {title} · <span className="card-sub">{company}</span>
-    </>
-  )
-
+export default function ExperienceItem({ dates, title, company, detail, url, description, tech }) {
   return (
-    <li className="card">
-      <p className="card-meta">{dates}</p>
-      <div>
-        <h3 className="card-title">
+    <li className="job">
+      <p className="job-dates">{dates}</p>
+      <div className="job-body">
+        <h3 className="job-title">{title}</h3>
+        <p className="job-company">
           {url ? (
-            // The link's ::after stretches over the whole card, so the card is clickable.
-            <a href={url} target="_blank" rel="noreferrer" className="card-link">
-              {heading} <ArrowIcon />
-            </a>
+            <a href={url} target="_blank" rel="noreferrer">{company}</a>
           ) : (
-            heading
+            company
           )}
-        </h3>
-        <p className="card-text">{description}</p>
-        {tech && <TagList tags={tech} />}
+          {detail && ` · ${detail}`}
+        </p>
+        <p className="job-text">{description}</p>
+        {tech && <TechList items={tech} />}
       </div>
     </li>
   )

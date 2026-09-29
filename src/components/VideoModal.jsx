@@ -5,7 +5,7 @@ import { CloseIcon } from './Icons.jsx'
 // Plays a project's demo in a popup over the page. <dialog> gives us the
 // dark backdrop, Esc-to-close and keyboard focus handling for free.
 // `videos` is a list of { label, video }; with more than one, tabs switch between them.
-export default function VideoModal({ title, videos, onClose }) {
+export default function VideoModal({ number, title, caption, videos, onClose }) {
   const ref = useRef(null)
   const [current, setCurrent] = useState(0)
   const { video } = videos[current]
@@ -21,16 +21,19 @@ export default function VideoModal({ title, videos, onClose }) {
   return (
     <dialog
       ref={ref}
-      className="video-modal"
+      className="modal video-modal"
       aria-label={`${title} demo`}
       onClose={onClose}
       // A click on the dialog itself (not its contents) is a click on the backdrop.
       onClick={(e) => e.target === ref.current && close()}
     >
       <div className="video-modal-header">
-        <h3>{title}</h3>
-        <button type="button" className="icon-button" onClick={close} aria-label="Close video">
-          <CloseIcon />
+        <div>
+          {number && <p className="project-num">No. {number}</p>}
+          <h3>{title}</h3>
+        </div>
+        <button type="button" className="btn btn-ghost" onClick={close}>
+          Close <CloseIcon size={16} />
         </button>
       </div>
 
@@ -65,6 +68,8 @@ export default function VideoModal({ title, videos, onClose }) {
           Your browser can’t play this video.
         </video>
       )}
+
+      {caption && <p className="video-caption">{caption}.</p>}
     </dialog>
   )
 }

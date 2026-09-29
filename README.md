@@ -50,7 +50,7 @@ npm run dev      # opens http://localhost:5173
 
 - `src/data.js`: all site content
 - `src/App.jsx`: page structure (sidebar + About / Experience / Projects / Contact)
-- `src/components/`: Sidebar, ProjectCard (video), ExperienceItem, Spotlight, icons
+- `src/components/`: Sidebar, Section, ProjectCard, ExperienceItem, VideoModal, NoticeModal, icons
 - `src/hooks/useActiveSection.js`: highlights the section you're reading in the nav
-- `src/index.css`: all styles; colours are the variables at the top in `:root`
+- `src/index.css`: all styles; colours and fonts are the variables at the top in `:root`
 - `public/`: files served as-is (`videos/`, `resume.pdf`)
