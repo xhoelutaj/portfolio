@@ -54,5 +54,3 @@ npm run dev      # opens http://localhost:5173
 - `src/hooks/useActiveSection.js`: highlights the section you're reading in the nav
 - `src/index.css`: all styles; colours are the variables at the top in `:root`
 - `public/`: files served as-is (`videos/`, `resume.pdf`)
-
-Layout inspired by [Brittany Chiang](https://brittanychiang.com).

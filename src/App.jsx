@@ -3,7 +3,7 @@ import Sidebar from './components/Sidebar.jsx'
 import Section from './components/Section.jsx'
 import ExperienceItem from './components/ExperienceItem.jsx'
 import ProjectCard from './components/ProjectCard.jsx'
-import { ArrowIcon, GitHubIcon } from './components/Icons.jsx'
+import { ArrowIcon } from './components/Icons.jsx'
 import useActiveSection from './hooks/useActiveSection.js'
 import { profile, about, experience, projects } from './data.js'
 import { asset } from './asset.js'
@@ -72,16 +72,6 @@ export default function App() {
               <a className="button" href={`mailto:${profile.email}`}>Say hello</a>
             )}
           </Section>
-
-          <footer className="footer">
-            <a className="footer-github" href={profile.github} target="_blank" rel="noreferrer">
-              <GitHubIcon size={18} /> See my code on GitHub
-            </a>
-            <p>
-              Designed and built by {profile.name} with React and Vite. Layout inspired by{' '}
-              <a className="link" href="https://brittanychiang.com" target="_blank" rel="noreferrer">Brittany Chiang</a>.
-            </p>
-          </footer>
         </main>
       </div>
     </>

@@ -3,7 +3,7 @@
   --bg: #0f172a;
   --text: #94a3b8;          /* body text */
   --heading: #e2e8f0;       /* names, titles, hovered links */
-  --muted: #64748b;         /* dates, footer */
+  --muted: #64748b;         /* dates, nav labels */
   --accent: #5eead4;
   --accent-soft: rgba(45, 212, 191, 0.1);
   --card-hover: rgba(30, 41, 59, 0.5);
@@ -312,9 +312,6 @@ body:has(.notice-modal[open]) { overflow: hidden; }
 }
 .button:hover { background: var(--accent-soft); }
 
-.footer { max-width: 28rem; padding-bottom: 32px; font-size: 0.875rem; color: var(--muted); }
-.footer-github { display: inline-flex; align-items: center; gap: 8px; font-weight: 500; color: var(--heading); transition: color 0.15s; }
-.footer-github:hover { color: var(--accent); }
 
 /* ---------- Tablet ---------- */
 @media (min-width: 640px) {
