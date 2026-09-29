@@ -33,6 +33,7 @@ export const experience = []
 // Clicking a project with a video opens it in a popup player on the site.
 //   video: 'videos/name.mp4'                     a file uploaded to public/videos/
 //   video: 'https://youtu.be/abc123XYZ00'         an (unlisted) YouTube video
+// moreVideos: [{ label, video }] adds extra videos, shown as tabs in the popup.
 // poster: 'videos/name.jpg' adds an optional thumbnail image to the card.
 // demo: a link to the live app, shown as "Live site".
 // demoNotice: optional { title, message } shown (with an OK button) before opening it.
@@ -62,6 +63,7 @@ export const projects = [
     description:
       'A role-based contact manager with five permission levels, search, and CSV / Excel export. The contact list is presented as a 3D address book with page-flip animation, layered on top of a plain server-rendered list.',
     tech: ['ASP.NET Core MVC', 'EF Core', 'SQL Server', 'JavaScript'],
-    video: null,
+    video: 'https://youtu.be/fGC5bnyFgiE',
+    moreVideos: [{ label: 'Enhanced frontend', video: 'https://youtu.be/sawoL1G-TXI' }],
   },
 ]

@@ -5,7 +5,7 @@ import TagList from './TagList.jsx'
 import VideoModal from './VideoModal.jsx'
 import NoticeModal from './NoticeModal.jsx'
 
-export default function ProjectCard({ title, description, tech, demo, demoNotice, video, poster }) {
+export default function ProjectCard({ title, description, tech, demo, demoNotice, video, moreVideos = [], poster }) {
   const [playing, setPlaying] = useState(false)
   const [showNotice, setShowNotice] = useState(false)
   const openVideo = () => setPlaying(true)
@@ -69,7 +69,13 @@ export default function ProjectCard({ title, description, tech, demo, demoNotice
         <TagList tags={tech} />
       </div>
 
-      {playing && <VideoModal title={title} video={video} onClose={() => setPlaying(false)} />}
+      {playing && (
+        <VideoModal
+          title={title}
+          videos={[{ label: 'Full demo', video }, ...moreVideos]}
+          onClose={() => setPlaying(false)}
+        />
+      )}
       {showNotice && (
         <NoticeModal
           {...demoNotice}

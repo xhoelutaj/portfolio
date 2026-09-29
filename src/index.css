@@ -269,6 +269,23 @@ body:has(.video-modal[open]) { overflow: hidden; } /* stop the page scrolling be
 .notice-modal .button:focus-visible { outline: 2px solid var(--heading); outline-offset: 3px; }
 body:has(.notice-modal[open]) { overflow: hidden; }
 
+.video-tabs { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 20px 12px; }
+.video-tab {
+  padding: 6px 14px;
+  border: 1px solid rgba(226, 232, 240, 0.15);
+  border-radius: 999px;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.video-tab:hover { color: var(--heading); border-color: rgba(226, 232, 240, 0.35); }
+.video-tab[aria-pressed='true'] { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); }
+.video-tab:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
 .video-modal-player {
   display: block;
   width: 100%;

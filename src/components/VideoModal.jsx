@@ -1,11 +1,14 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { getYouTubeId, videoSrc } from '../video.js'
 import { CloseIcon } from './Icons.jsx'
 
 // Plays a project's demo in a popup over the page. <dialog> gives us the
 // dark backdrop, Esc-to-close and keyboard focus handling for free.
-export default function VideoModal({ title, video, onClose }) {
+// `videos` is a list of { label, video }; with more than one, tabs switch between them.
+export default function VideoModal({ title, videos, onClose }) {
   const ref = useRef(null)
+  const [current, setCurrent] = useState(0)
+  const { video } = videos[current]
   const youtubeId = getYouTubeId(video)
 
   useEffect(() => {
@@ -31,16 +34,34 @@ export default function VideoModal({ title, video, onClose }) {
         </button>
       </div>
 
+      {videos.length > 1 && (
+        <div className="video-tabs" role="group" aria-label="Choose a video">
+          {videos.map((v, i) => (
+            <button
+              key={v.video}
+              type="button"
+              className="video-tab"
+              aria-pressed={i === current}
+              onClick={() => setCurrent(i)}
+            >
+              {v.label}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* key makes React swap in a fresh player when the tab changes. */}
       {youtubeId ? (
         <iframe
+          key={video}
           className="video-modal-player"
           src={`https://www.youtube-nocookie.com/embed/${youtubeId}?autoplay=1&rel=0`}
-          title={`${title} demo`}
+          title={`${title}: ${videos[current].label}`}
           allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
           allowFullScreen
         />
       ) : (
-        <video className="video-modal-player" src={videoSrc(video)} controls autoPlay playsInline>
+        <video key={video} className="video-modal-player" src={videoSrc(video)} controls autoPlay playsInline>
           Your browser can’t play this video.
         </video>
       )}
