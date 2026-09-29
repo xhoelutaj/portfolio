@@ -1,8 +1,10 @@
-import { LinkedInIcon, MailIcon } from './Icons.jsx'
+import { GitHubIcon, InstagramIcon, LinkedInIcon, MailIcon } from './Icons.jsx'
 
 export default function Sidebar({ profile, sections, active }) {
   const socials = [
+    { href: profile.github, label: 'GitHub', Icon: GitHubIcon },
     { href: profile.linkedin, label: 'LinkedIn', Icon: LinkedInIcon },
+    { href: profile.instagram, label: 'Instagram', Icon: InstagramIcon },
     { href: profile.email && `mailto:${profile.email}`, label: 'Email', Icon: MailIcon },
   ].filter((social) => social.href)
 

@@ -9,6 +9,7 @@ export const profile = {
   email: 'xlutaj@nmu.edu',
   github: 'https://github.com/xhoelutaj',
   linkedin: 'https://www.linkedin.com/in/xhoel-lutaj-10a710348/',
+  instagram: 'https://www.instagram.com/xhoelutaj/',
   resume: 'resume.pdf', // public/resume.pdf
 }
 
