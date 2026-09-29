@@ -2,7 +2,7 @@
 
 My personal portfolio site, built with React + Vite.
 
-**Live site:** https://xhoelutaj.github.io/portofolio/
+**Live site:** https://xhoelutaj.github.io/portfolio/
 
 Every change to `main` is rebuilt and published automatically by
 `.github/workflows/deploy.yml` (about 1–2 minutes). You can see progress in the **Actions** tab.
@@ -40,8 +40,8 @@ Upload `resume.pdf` into [`public`](public), then set `resume: 'resume.pdf'` in 
 Needs [Node.js](https://nodejs.org) and [Git](https://git-scm.com).
 
 ```bash
-git clone https://github.com/xhoelutaj/portofolio
-cd portofolio
+git clone https://github.com/xhoelutaj/portfolio
+cd portfolio
 npm install
 npm run dev      # opens http://localhost:5173
 ```
