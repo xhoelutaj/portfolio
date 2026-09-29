@@ -1,4 +1,5 @@
 import Spotlight from './components/Spotlight.jsx'
+import ThemePreviewBar from './components/ThemePreviewBar.jsx'
 import Sidebar from './components/Sidebar.jsx'
 import Section from './components/Section.jsx'
 import ExperienceItem from './components/ExperienceItem.jsx'
@@ -30,6 +31,7 @@ export default function App() {
     <>
       <a href="#content" className="skip-link">Skip to content</a>
       <Spotlight />
+      <ThemePreviewBar />
 
       <div className="layout" id="top">
         <Sidebar profile={profile} sections={sections} active={active} />
