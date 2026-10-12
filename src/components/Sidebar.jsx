@@ -15,7 +15,6 @@ export default function Sidebar({ profile, sections, active }) {
   return (
     <header className="sidebar">
       <div>
-        <p className="eyebrow">Portfolio · {profile.location}</p>
         <h1 className="name">
           <a href="#top">
             {firstName}
@@ -28,7 +27,12 @@ export default function Sidebar({ profile, sections, active }) {
           </a>
         </h1>
         <p className="role">{profile.role}</p>
-        <p className="tagline">{profile.tagline}</p>
+        {profile.availability && (
+          <p className="availability">
+            <span className="availability-dot" aria-hidden="true" />
+            {profile.availability}
+          </p>
+        )}
 
         <nav className="section-nav" aria-label="Sections">
           <ol>

@@ -4,9 +4,8 @@
 
 export const profile = {
   name: 'Xhoel Lutaj',
-  location: 'Marquette, MI',
   role: 'Full-stack software developer',
-  tagline: 'I build full-stack web apps and practical AI tools with C#, React and Python.',
+  availability: 'Open to Summer 2027 software internships', // shown under your title; '' hides it
   email: 'xlutaj@nmu.edu',
   github: 'https://github.com/xhoelutaj',
   linkedin: 'https://www.linkedin.com/in/xhoel-lutaj-10a710348/',
@@ -66,10 +65,10 @@ export const experience = [
 //   video: 'videos/name.mp4'                     a file uploaded to public/videos/
 //   video: 'https://youtu.be/abc123XYZ00'         an (unlisted) YouTube video
 // moreVideos: [{ label, video }] adds extra videos, shown as tabs in the popup.
-// poster: 'videos/name.jpg' adds an optional thumbnail image.
+// Thumbnails come from the YouTube video automatically.
+// poster: 'videos/name.jpg' uses your own image instead (needed for .mp4 videos).
 // demo: a link to the live app, shown as "Visit the live site".
 // demoNotice: optional { eyebrow, title, message } shown (with an OK button) before opening it.
-// quote: optional { text, caption }, a pull quote shown after the project.
 export const projects = [
   {
     title: 'Gaffr',
@@ -85,10 +84,6 @@ export const projects = [
         'Thanks for stopping by! Gaffr is an active work in progress, so some features, such as signing up and logging in, may be unavailable or behave unexpectedly while I keep building. For the full experience, check out the demo video.',
     },
     video: 'https://youtu.be/usqNym1Psjs',
-    quote: {
-      text: 'An LLM cannot be trusted with spatial coordinates, so the model writes a script and the frontend draws every drill.',
-      caption: 'On designing Gaffr',
-    },
   },
   {
     title: 'RAG Chatbot',
