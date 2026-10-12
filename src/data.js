@@ -15,10 +15,12 @@ export const profile = {
 
 export const about = {
   // Shown large, in the serif.
-  lead: 'I’m a software developer who likes building complete products, from the database and API to the interface people actually use.',
+  lead: 'I’m Xhoel, a junior at Northern Michigan University double majoring in Computer Science and Mathematics.',
   paragraphs: [
-    'Most of my work is in C# and ASP.NET Core, React and TypeScript, and Python. Lately I’ve been focused on applied AI: a soccer coaching app that generates personalised training sessions, and a retrieval-augmented assistant for Albanian traffic law that checks its own citations so it can’t quietly invent the law.',
-    'I care about the details that make software trustworthy: access control enforced at the database, thorough tests, and interfaces that respect settings like reduced motion.',
+    'I’m also a midfielder on NMU’s men’s soccer team, so most of my days are split between the field, the classroom, and whatever I’m building.',
+    'I’ve built a few projects you can explore below, but my favorite is Gaffr, an app that brings together my two passions: soccer and building software. It creates personalized training sessions for young players who want to improve on their own. It’s almost ready to launch, and I’m excited to see how players respond to it.',
+    'Long term, I want to build a career in machine learning. It’s where my interest in building software meets my math background, and that combination is what draws me to it. It’s an area I’m committed to exploring much more deeply in the years ahead.',
+    'Outside code and soccer, I’m usually watching a movie, reading a book, or starting a new show. I’m always up for a good recommendation.',
   ],
 }
 
